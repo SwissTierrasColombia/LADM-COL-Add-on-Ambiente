@@ -1,0 +1,132 @@
+INTERLIS 2.3;
+
+MODEL Ambiente_V0_1 (es)
+AT "mailto:PC-1@localhost"
+VERSION "2020-12-02"  =
+  IMPORTS LADM_COL_V3_0;
+
+  DOMAIN
+
+    MA_FuenteAdministrativaTipo
+    EXTENDS LADM_COL_V3_0.LADM_Nucleo.COL_FuenteAdministrativaTipo = (
+      Documento_Publico(
+        !!@ ili2db.dispName = "(Documento público) Acto administrativo"
+        Acto_Administrativo
+      )
+    );
+
+    MA_InteresadoTipo = (
+      !!@ ili2db.dispName = "Ente regulador"
+      Ente_Regulador,
+      !!@ ili2db.dispName = "Solicitante actividades"
+      Solicitante_Actividades,
+      Otros
+    );
+
+    MA_RFZonaManejoTipo = (
+      !!@ ili2db.dispName = "Preservación"
+      Preservacion,
+      !!@ ili2db.dispName = "Restauración"
+      Restauracion,
+      !!@ ili2db.dispName = "Uso sostenible"
+      Uso_Sostenible,
+      !!@ ili2db.dispName = "Uso público"
+      Uso_Publico
+    );
+
+    MA_SustraccionReservaTipo = (
+      Definitiva,
+      Temporal
+    );
+
+  TOPIC Ambiente
+  EXTENDS LADM_COL_V3_0.LADM_Nucleo =
+    OID AS INTERLIS.UUIDOID;
+    DEPENDS ON LADM_COL_V3_0.LADM_Nucleo;
+
+    !!@ ili2db.dispName = "(MA) Fuente administrativa"
+    CLASS MA_FuenteAdministrativa
+    EXTENDS LADM_COL_V3_0.LADM_Nucleo.COL_FuenteAdministrativa =
+      !!@ ili2db.dispName = "Tipo"
+      Tipo (EXTENDED) : MANDATORY Ambiente_V0_1.MA_FuenteAdministrativaTipo;
+    END MA_FuenteAdministrativa;
+
+    !!@ ili2db.dispName = "(MA) Fuente espacial"
+    CLASS MA_FuenteEspacial
+    EXTENDS LADM_COL_V3_0.LADM_Nucleo.COL_FuenteEspacial =
+    END MA_FuenteEspacial;
+
+    !!@ ili2db.dispName = "(MA) Interesado"
+    CLASS MA_Interesado
+    EXTENDS LADM_COL_V3_0.LADM_Nucleo.COL_Interesado =
+      Tipo : Ambiente_V0_1.MA_InteresadoTipo;
+      !!@ ili2db.dispName = "Otro ¿cuál?"
+      Otro_Cual : TEXT*200;
+    END MA_Interesado;
+
+    CLASS MA_NU_AgrupacionInteresados
+    EXTENDS LADM_COL_V3_0.LADM_Nucleo.COL_AgrupacionInteresados =
+    END MA_NU_AgrupacionInteresados;
+
+    CLASS MA_NU_AgrupacionUnidadesEspaciales
+    EXTENDS LADM_COL_V3_0.LADM_Nucleo.COL_AgrupacionUnidadesEspaciales =
+    END MA_NU_AgrupacionUnidadesEspaciales;
+
+    CLASS MA_NU_CadenaCarasLimite
+    EXTENDS LADM_COL_V3_0.LADM_Nucleo.COL_CadenaCarasLimite =
+    END MA_NU_CadenaCarasLimite;
+
+    CLASS MA_NU_CarasLindero
+    EXTENDS LADM_COL_V3_0.LADM_Nucleo.COL_CarasLindero =
+    END MA_NU_CarasLindero;
+
+    CLASS MA_NU_DRR
+    EXTENDS LADM_COL_V3_0.LADM_Nucleo.COL_DRR =
+    END MA_NU_DRR;
+
+    CLASS MA_NU_EspacioJuridicoRedServicios
+    EXTENDS LADM_COL_V3_0.LADM_Nucleo.COL_EspacioJuridicoRedServicios =
+    END MA_NU_EspacioJuridicoRedServicios;
+
+    CLASS MA_NU_EspacioJuridicoUnidadEdificacion
+    EXTENDS LADM_COL_V3_0.LADM_Nucleo.COL_EspacioJuridicoUnidadEdificacion =
+    END MA_NU_EspacioJuridicoUnidadEdificacion;
+
+    CLASS MA_NU_Nivel
+    EXTENDS LADM_COL_V3_0.LADM_Nucleo.COL_Nivel =
+    END MA_NU_Nivel;
+
+    CLASS MA_NU_Punto
+    EXTENDS LADM_COL_V3_0.LADM_Nucleo.COL_Punto =
+    END MA_NU_Punto;
+
+    CLASS MA_NU_RelacionNecesariaBaUnits
+    EXTENDS LADM_COL_V3_0.LADM_Nucleo.COL_RelacionNecesariaBAUnits =
+    END MA_NU_RelacionNecesariaBaUnits;
+
+    !!@ ili2db.dispName = "(MA) Relacion necesaria unidades espaciales"
+    CLASS MA_RelacionNecesariaUnidadesEspaciales
+    EXTENDS LADM_COL_V3_0.LADM_Nucleo.COL_RelacionNecesariaUnidadesEspaciales =
+    END MA_RelacionNecesariaUnidadesEspaciales;
+
+    CLASS MA_UAB_ZonificacionManejoAmbiental
+    EXTENDS LADM_COL_V3_0.LADM_Nucleo.COL_UnidadAdministrativaBasica =
+    END MA_UAB_ZonificacionManejoAmbiental;
+
+    CLASS MA_UE_ZonificacionManejoAmbiental
+    EXTENDS LADM_COL_V3_0.LADM_Nucleo.COL_UnidadEspacial =
+    END MA_UE_ZonificacionManejoAmbiental;
+
+    ASSOCIATION ma_relacionnecesariaUE_de =
+      ue_de (EXTERNAL) -- {0..1} LADM_COL_V3_0.LADM_Nucleo.COL_UnidadEspacial;
+      relacionnecesariaUE -- {0..*} MA_RelacionNecesariaUnidadesEspaciales;
+    END ma_relacionnecesariaUE_de;
+
+    ASSOCIATION ma_relacionnecesariaUE_hacia =
+      ue_hacia (EXTERNAL) -- {0..1} LADM_COL_V3_0.LADM_Nucleo.COL_UnidadEspacial;
+      relacionnecesariaUE -- {0..*} MA_RelacionNecesariaUnidadesEspaciales;
+    END ma_relacionnecesariaUE_hacia;
+
+  END Ambiente;
+
+END Ambiente_V0_1.
