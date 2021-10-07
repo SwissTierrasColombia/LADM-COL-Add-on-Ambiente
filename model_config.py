@@ -1,4 +1,8 @@
-from asistente_ladm_col.config.keys.ili2db_keys import ILI2DB_SCHEMAIMPORT, ILI2DB_CREATE_BASKET_COL_KEY
+from asistente_ladm_col.config.general_config import DEFAULT_DATASET_NAME
+from asistente_ladm_col.config.keys.ili2db_keys import (ILI2DB_SCHEMAIMPORT,
+                                                        ILI2DB_IMPORT,
+                                                        ILI2DB_CREATE_BASKET_COL_KEY,
+                                                        ILI2DB_DATASET)
 from qgis.PyQt.QtCore import QCoreApplication
 
 try:
@@ -31,7 +35,12 @@ class ModelConfig:
                 MODEL_MAPPING: dict(),
                 MODEL_DIR: MODELS_DIR,
                 MODEL_ILI2DB_PARAMETERS: {
-                    ILI2DB_SCHEMAIMPORT: [(ILI2DB_CREATE_BASKET_COL_KEY, None)]
+                    ILI2DB_SCHEMAIMPORT: [(ILI2DB_CREATE_BASKET_COL_KEY, None)],
+                    ILI2DB_IMPORT: [(ILI2DB_DATASET, DEFAULT_DATASET_NAME)]
+                },
+                MODEL_BASKET_INFO: {
+                    MODEL_BASKET_TOPIC_NAME: "Ley_2da_V0_1.Ley_2da",
+                    MODEL_BASKET_TOPIC_NAME_PREFERRED: True  # Prefer this topic name over others in the same DB
                 }
             }),
             LADMColModel(NATIONAL_PROTECTED_FOREST_MODEL_KEY, {
