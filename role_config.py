@@ -37,5 +37,6 @@ class RoleConfig:
                 ACTION_ST_LOGIN,
                 ACTION_ST_LOGOUT],
             ROLE_QUALITY_RULES: [],
-            ROLE_GUI_CONFIG: gui_config
+            ROLE_GUI_CONFIG: gui_config,
+            ROLE_NEEDS_AUTOMATIC_VALUE_FOR_BASKETS: True
         }
