@@ -45,7 +45,8 @@ VERSION "2020-11-06"  =
    * Amazonia (Caquetá, Guaviare y Huila)  Resolución 1925 del 30 de diciembre de 2013
    */
   TOPIC Ley_2da
-  EXTENDS LADM_COL_V3_0.LADM_Nucleo =
+  EXTENDS Ambiente_V0_1.Ambiente =
+    BASKET OID AS INTERLIS.UUIDOID;
     OID AS INTERLIS.UUIDOID;
     DEPENDS ON Ambiente_V0_1.Ambiente,LADM_COL_V3_0.LADM_Nucleo;
 
@@ -355,7 +356,8 @@ VERSION "2020-12-02"  =
   IMPORTS LADM_COL_V3_0,Ambiente_V0_1;
 
   TOPIC RFPN
-  EXTENDS LADM_COL_V3_0.LADM_Nucleo =
+  EXTENDS Ambiente_V0_1.Ambiente =
+    BASKET OID AS INTERLIS.UUIDOID;
     OID AS INTERLIS.UUIDOID;
     DEPENDS ON Ambiente_V0_1.Ambiente,LADM_COL_V3_0.LADM_Nucleo;
 
@@ -617,7 +619,8 @@ VERSION "2020-11-03"  =
   IMPORTS LADM_COL_V3_0,Ambiente_V0_1;
 
   TOPIC RFPP
-  EXTENDS LADM_COL_V3_0.LADM_Nucleo =
+  EXTENDS Ambiente_V0_1.Ambiente =
+    BASKET OID AS INTERLIS.UUIDOID;
     OID AS INTERLIS.UUIDOID;
     DEPENDS ON Ambiente_V0_1.Ambiente,LADM_COL_V3_0.LADM_Nucleo;
 
