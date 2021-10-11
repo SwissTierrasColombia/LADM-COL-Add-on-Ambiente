@@ -19,6 +19,9 @@ class RoleConfig:
         gui_config = GUI_Config().get_gui_dict()
         gui_config[MAIN_MENU][0][WIDGET_NAME] = "LADM-COL AM&BIENTE"
 
+        default_gui_config = GUI_Config().get_gui_dict(DEFAULT_GUI)
+        default_gui_config[MAIN_MENU][0][WIDGET_NAME] = "LADM-COL AM&BIENTE"
+
         return ENVIRONMENT_ROLE_KEY, {
             ROLE_NAME: QCoreApplication.translate("RoleConfig", "Environment user"),
             ROLE_DESCRIPTION: QCoreApplication.translate("RoleConfig",
@@ -37,6 +40,6 @@ class RoleConfig:
                 ACTION_ST_LOGIN,
                 ACTION_ST_LOGOUT],
             ROLE_QUALITY_RULES: [],
-            ROLE_GUI_CONFIG: gui_config,
+            ROLE_GUI_CONFIG: {TEMPLATE_GUI: gui_config, DEFAULT_GUI: default_gui_config},
             ROLE_NEEDS_AUTOMATIC_VALUE_FOR_BASKETS: True
         }
