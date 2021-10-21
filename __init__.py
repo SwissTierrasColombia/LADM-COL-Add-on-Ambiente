@@ -19,10 +19,11 @@ from qgis.PyQt.QtCore import QCoreApplication
 from qgis.core import Qgis
 from qgis.utils import pluginMetadata
 
-from .config import (ADD_ON_PLUGIN_NAME,
-                     LADM_COL_PLUGIN_ID,
-                     LADM_COL_REQUIRED_VERSION,
-                     WARNING_DEPENDENCY_MISSING)
+from .config.general_config import (ADD_ON_PLUGIN_NAME,
+                                    LADM_COL_PLUGIN_ID,
+                                    LADM_COL_REQUIRED_VERSION,
+                                    WARNING_DEPENDENCY_MISSING)
+
 
 def classFactory(iface):
     # First make sure Asistente LADM-COL is installed

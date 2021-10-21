@@ -6,7 +6,8 @@ try:
 except ModuleNotFoundError:
     pass
 
-from .config import *
+from .general_config import *
+from .gui_config import gui_config
 
 
 class RoleConfig:
@@ -16,9 +17,6 @@ class RoleConfig:
 
     @staticmethod
     def get_role_configuration():
-        gui_config = GUI_Config().get_gui_dict()
-        gui_config[MAIN_MENU][0][WIDGET_NAME] = "LADM-COL AM&BIENTE"
-
         default_gui_config = GUI_Config().get_gui_dict(DEFAULT_GUI)
         default_gui_config[MAIN_MENU][0][WIDGET_NAME] = "LADM-COL AM&BIENTE"
 
@@ -36,9 +34,7 @@ class RoleConfig:
                                                LADMNames.ISO19107_MODEL_KEY],
                           ROLE_CHECKED_MODELS: [SECOND_LAW_MODEL_KEY,
                                                 ENVIRONMENT_MODEL_KEY]},
-            ROLE_ACTIONS: [
-                ACTION_ST_LOGIN,
-                ACTION_ST_LOGOUT],
+            ROLE_ACTIONS: [ACTION_ETL_ADD_ON_ENVIRONMENT],
             ROLE_QUALITY_RULES: [],
             ROLE_GUI_CONFIG: {TEMPLATE_GUI: gui_config, DEFAULT_GUI: default_gui_config},
             ROLE_NEEDS_AUTOMATIC_VALUE_FOR_BASKETS: True

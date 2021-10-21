@@ -1,21 +1,21 @@
-from asistente_ladm_col.config.general_config import DEFAULT_DATASET_NAME
-from asistente_ladm_col.config.keys.ili2db_keys import (ILI2DB_SCHEMAIMPORT,
-                                                        ILI2DB_IMPORT,
-                                                        ILI2DB_CREATE_BASKET_COL_KEY,
-                                                        ILI2DB_DATASET)
 from qgis.PyQt.QtCore import QCoreApplication
 
 try:
     from asistente_ladm_col.config.keys.common import *
     from asistente_ladm_col.lib.model_registry import LADMColModel
+    from asistente_ladm_col.config.general_config import DEFAULT_DATASET_NAME
+    from asistente_ladm_col.config.keys.ili2db_keys import (ILI2DB_SCHEMAIMPORT,
+                                                            ILI2DB_IMPORT,
+                                                            ILI2DB_CREATE_BASKET_COL_KEY,
+                                                            ILI2DB_DATASET)
 except ModuleNotFoundError:
     pass
 
-from .config import (SECOND_LAW_MODEL_KEY,
-                     NATIONAL_PROTECTED_FOREST_MODEL_KEY,
-                     PRODUCER_PROTECTED_FOREST_MODEL_KEY,
-                     ENVIRONMENT_MODEL_KEY,
-                     MODELS_DIR)
+from .general_config import (SECOND_LAW_MODEL_KEY,
+                             NATIONAL_PROTECTED_FOREST_MODEL_KEY,
+                             PRODUCER_PROTECTED_FOREST_MODEL_KEY,
+                             ENVIRONMENT_MODEL_KEY,
+                             MODELS_DIR)
 
 
 class ModelConfig:
