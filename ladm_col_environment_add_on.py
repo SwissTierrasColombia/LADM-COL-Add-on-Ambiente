@@ -98,4 +98,4 @@ class LADMCOLEnvironmentAddOn:
     def unload(self):
         if self.ladmcol:  # In case LADM-COL has not been uninstalled yet...
             self.ladmcol.role_registry.unregister_role(ENVIRONMENT_ROLE_KEY)
-            self.ladmcol.model_registry.unregister_model(ENVIRONMENT_ROLE_KEY, True)
+            self.ladmcol.model_registry.unregister_model(ENVIRONMENT_MODEL_KEY, True)

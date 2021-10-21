@@ -5224,7 +5224,7 @@
   <Option name="groupBoxes"/>
   <Option name="help"/>
   <Option name="modelVariables"/>
-  <Option value="" type="QString" name="model_group"/>
+  <Option value="LADM-COL" type="QString" name="model_group"/>
   <Option value="ETL Ambiente ley 2da" type="QString" name="model_name"/>
   <Option type="Map" name="parameterDefinitions">
     <Option type="Map" name="ENTRADAReservaLey2da">
