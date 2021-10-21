@@ -7,6 +7,7 @@ ADD_ON_PLUGIN_DIR = os.path.dirname(__file__)
 RESOURCES_DIR = os.path.join(ADD_ON_PLUGIN_DIR, "resources")
 IMAGES_DIR = os.path.join(RESOURCES_DIR, "images")
 MODELS_DIR = os.path.join(RESOURCES_DIR, "models")
+PROCESSING_MODELS_DIR = os.path.join(RESOURCES_DIR, "processing", "models")
 ENVIRONMENT_ROLE_KEY = "ENVIRONMENT_ROLE"
 
 SECOND_LAW_MODEL_KEY = "Ley_2da"

@@ -53,6 +53,9 @@ class LADMCOLEnvironmentAddOn:
         role_key, role_config = RoleConfig.get_role_configuration()
         self.ladmcol.role_registry.register_role(role_key, role_config, activate_role=True)
 
+        # Register ETL
+        self.ladmcol.app.processing.register_add_on_processing_models(PROCESSING_MODELS_DIR)
+
     def __unload_ladm_col_plugin(self):
         # Called when the LADM-COL plugin is uninstalled, informing us
         # we have to reset all member vars that deal with the plugin
