@@ -15,6 +15,8 @@
  *                                                                         *
  ***************************************************************************/
 """
+from functools import partial
+
 from qgis.PyQt.QtCore import QCoreApplication
 from qgis.PyQt.QtGui import QIcon
 from qgis.PyQt.QtWidgets import QAction
@@ -23,6 +25,13 @@ from qgis.core import (Qgis,
 from qgis.utils import plugins
 
 import processing
+
+try:
+    from asistente_ladm_col.lib.context import Context
+    from asistente_ladm_col.utils.decorators import (db_connection_required,
+                                                     qgis_model_baker_required)
+except ModuleNotFoundError:
+    pass
 
 from .config.model_config import ModelConfig
 from .config.role_config import RoleConfig
@@ -70,16 +79,51 @@ class LADMCOLEnvironmentAddOn:
                                         self.ladmcol.main_window)
 
         # Signal-slot connections
-        self.__run_etl_action.triggered.connect(self.__run_etl)
+        self.__run_etl_action.triggered.connect(partial(self.__run_etl, Context()))
 
         self.ladmcol.gui_builder.register_actions({ACTION_ETL_ADD_ON_ENVIRONMENT: self.__run_etl_action})
         self.ladmcol.add_actions_to_db_engines([ACTION_ETL_ADD_ON_ENVIRONMENT], ['pg', 'gpkg'])
 
-    def __run_etl(self):
+    @qgis_model_baker_required
+    @db_connection_required
+    def __run_etl(self, *args):
         self.ladmcol.logger.info(__name__, "Running ETL model...")
 
+        db = self.ladmcol.get_db_connection()
+        layers = {db.names.L2DA_DRR_T: None,
+                  db.names.L2DA_UAB_COMPENSATION_T: None,
+                  db.names.L2DA_UAB_RESERVE_T: None,
+                  db.names.L2DA_UAB_SUBTRACTION_T: None,
+                  db.names.L2DA_UE_COMPENSATION_T: None,
+                  db.names.L2DA_UE_RESERVE_T: None,
+                  db.names.L2DA_UE_SUBTRACTION_T: None,
+                  db.names.COL_RRRSOURCE_T: None,
+                  db.names.COL_UEBAUNIT_T: None,
+                  db.names.MA_ADMINISTRATIVE_SOURCE_T: None,
+                  db.names.MA_PARTY_T: None}
+
+        self.ladmcol.app.core.get_layers(db, layers, load=True)
+
+        if not layers:
+            return
+
+        params = {'ENTRADAReservaLey2da': None,
+                  'ENTRADASustraccion': None,
+                  'EntradaCompensacin': None,
+                  'SALIDAFuenteAdministrativa': layers[db.names.MA_ADMINISTRATIVE_SOURCE_T],
+                  'SALIDAL2DARRR': layers[db.names.L2DA_DRR_T],
+                  'SALIDAL2DAUABCompensacion': layers[db.names.L2DA_UAB_COMPENSATION_T],
+                  'SALIDAL2DAUABReserva': layers[db.names.L2DA_UAB_RESERVE_T],
+                  'SALIDAL2DAUABSustraccion': layers[db.names.L2DA_UAB_SUBTRACTION_T],
+                  'SALIDAL2DAUECompensacion': layers[db.names.L2DA_UE_COMPENSATION_T],
+                  'SALIDAL2DAUEReserva': layers[db.names.L2DA_UE_RESERVE_T],
+                  'SALIDAL2DAUESustraccion': layers[db.names.L2DA_UE_SUBTRACTION_T],
+                  'SALIDAMAInteresado': layers[db.names.MA_PARTY_T],
+                  'SALIDAcolrrrfuente': layers[db.names.COL_RRRSOURCE_T],
+                  'SALIDAcoluebaunit': layers[db.names.COL_UEBAUNIT_T]}
+
         try:
-            processing.execAlgorithmDialog("model:ETL Ambiente ley 2da", dict())
+            processing.execAlgorithmDialog("model:ETL Ambiente ley 2da", params)
         except QgsProcessingException as e:
             self.ladmcol.logger.warning_msg(__name__, QCoreApplication.translate("LADMCOLEnvironmentAddOn",
                                                                                  "There was an error running the ETL model. See the QGIS log for details."))
