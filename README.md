@@ -20,4 +20,9 @@ En su versión actual (0.1), el Add-on de Ambiente agrega al Asistente LADM-COL:
  
    ![image](https://user-images.githubusercontent.com/652785/139499633-eefb67b4-44ef-448b-a3ad-9bbb6fa4336b.png)
 
+## Instalación
+
+  1. En QGIS 3.16 o superior, [activar los complementos experimentales](https://docs.qgis.org/3.16/es/docs/user_manual/plugins/plugins.html#the-settings-tab). 
+  2. Instalar primero el `Asistente LADM-COL` 3.2.0-beta-1 (versión experimental).
+  3. Instalar luego el `LADM-COL-Add-on-Ambiente` 0.1 (versión experimental).
 
