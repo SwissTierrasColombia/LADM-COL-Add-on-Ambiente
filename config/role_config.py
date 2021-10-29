@@ -21,9 +21,9 @@ class RoleConfig:
         default_gui_config[MAIN_MENU][0][WIDGET_NAME] = "LADM-COL AM&BIENTE"
 
         return ENVIRONMENT_ROLE_KEY, {
-            ROLE_NAME: QCoreApplication.translate("RoleConfig", "Environment user"),
+            ROLE_NAME: QCoreApplication.translate("RoleConfig", "Environment role"),
             ROLE_DESCRIPTION: QCoreApplication.translate("RoleConfig",
-                                                         "The environment user is in charge of ..."),
+                                                         "The <b>environment</b> role is in charge of managing information of territorial objects for the environment sector."),
             ROLE_MODELS: {ROLE_SUPPORTED_MODELS: [LADMNames.LADM_COL_MODEL_KEY,
                                                   LADMNames.ISO19107_MODEL_KEY,
                                                   SECOND_LAW_MODEL_KEY,

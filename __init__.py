@@ -15,7 +15,6 @@
  *                                                                         *
  ***************************************************************************/
 """
-from qgis.PyQt.QtCore import QCoreApplication
 from qgis.core import Qgis
 from qgis.utils import pluginMetadata
 
@@ -34,7 +33,7 @@ def classFactory(iface):
             return LADMCOLEnvironmentAddOn(iface)
 
     iface.messageBar().pushMessage(ADD_ON_PLUGIN_NAME,
-                                   QCoreApplication.translate("__init__", WARNING_DEPENDENCY_MISSING),
+                                   WARNING_DEPENDENCY_MISSING,
                                    Qgis.Warning, 0)
     from mock import Mock
     return Mock()

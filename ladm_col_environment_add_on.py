@@ -17,7 +17,8 @@
 """
 from functools import partial
 
-from qgis.PyQt.QtCore import QCoreApplication
+from qgis.PyQt.QtCore import (QObject,
+                              QCoreApplication)
 from qgis.PyQt.QtGui import QIcon
 from qgis.PyQt.QtWidgets import QAction
 from qgis.core import (Qgis,
@@ -36,13 +37,17 @@ except ModuleNotFoundError:
 from .config.model_config import ModelConfig
 from .config.role_config import RoleConfig
 from .config.general_config import *
+from .config.translator import install_qt_translator
 
 
-class LADMCOLEnvironmentAddOn:
+class LADMCOLEnvironmentAddOn(QObject):
 
     def __init__(self, iface):
+        QObject.__init__(self)
         self.iface = iface
         self.ladmcol = None  # To hold instance of Asistente LADM-COL
+
+        self.__translator = install_qt_translator()
 
     def initGui(self):
         self.__initialize_ladm_col_plugin()
@@ -50,8 +55,8 @@ class LADMCOLEnvironmentAddOn:
     def __initialize_ladm_col_plugin(self):
         if LADM_COL_PLUGIN_ID not in plugins:
             # Let the user know that Asistente LADM-COL is required
-            self.iface.messageBar().pushMessage("LADMColAddOn",
-                                                QCoreApplication.translate("LADMColAddOn", WARNING_DEPENDENCY_MISSING),
+            self.iface.messageBar().pushMessage("LADMCOLEnvironmentAddOn",
+                                                WARNING_DEPENDENCY_MISSING,
                                                 Qgis.Warning)
             return
     

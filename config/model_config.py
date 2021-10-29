@@ -1,4 +1,5 @@
-from qgis.PyQt.QtCore import QCoreApplication
+from qgis.PyQt.QtCore import (QObject,
+                              QCoreApplication)
 
 try:
     from asistente_ladm_col.config.keys.common import *
@@ -19,7 +20,7 @@ from .general_config import (SECOND_LAW_MODEL_KEY,
                              MODELS_DIR)
 
 
-class ModelConfig:
+class ModelConfig(QObject):
 
     @staticmethod
     def get_model_instances():
