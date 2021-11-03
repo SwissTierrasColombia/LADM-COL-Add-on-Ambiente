@@ -1,6 +1,9 @@
 from copy import deepcopy
 
-from asistente_ladm_col.config.query_names import QueryNames
+try:
+    from asistente_ladm_col.config.query_names import QueryNames
+except ModuleNotFoundError:
+    pass
 
 from .general_config import (SECOND_LAW_MODEL_KEY,
                              ENVIRONMENT_MODEL_KEY)
