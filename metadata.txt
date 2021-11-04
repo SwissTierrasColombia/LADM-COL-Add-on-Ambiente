@@ -2,7 +2,7 @@
 name=LADM-COL add-on Ambiente
 description=Plugin to extend the Asistente LADM-COL plugin with tools for the environmental sector in Colombia
 about=Add-on para el sector ambiente en Colombia. Extiende funcionalidades del Asistente LADM-COL.
-version=0.1
+version=0.2
 tags=environment,ladm,ladm_col,interlis,iso19152,ambiente,colombia,addon,add on
 icon=resources/images/add_on.png
 
