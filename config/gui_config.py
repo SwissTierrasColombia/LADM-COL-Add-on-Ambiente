@@ -6,7 +6,8 @@ try:
 except ModuleNotFoundError:
     pass
 
-from .general_config import ACTION_ETL_ADD_ON_ENVIRONMENT
+from .general_config import (ACTION_ETL_ADD_ON_ENVIRONMENT,
+                             ACTION_HELP_ADD_ON_ENVIRONMENT)
 
 gui_config = {
         MAIN_MENU: [{  # List of main menus
@@ -43,7 +44,7 @@ gui_config = {
                 SEPARATOR,
                 ACTION_SETTINGS,
                 SEPARATOR,
-                ACTION_HELP,
+                ACTION_HELP_ADD_ON_ENVIRONMENT,
                 ACTION_ABOUT
             ]
         }], TOOLBAR: [{  # List of toolbars
@@ -54,6 +55,30 @@ gui_config = {
                 ACTION_ETL_ADD_ON_ENVIRONMENT,
                 SEPARATOR,
                 ACTION_SETTINGS
+            ]
+        }]
+    }
+
+default_gui_config = {  # For DB connections that don't pass a test_connection
+        MAIN_MENU: [{  # List of main menus
+            WIDGET_TYPE: MENU,
+            WIDGET_NAME: "LADM-COL AM&BIENTE",
+            OBJECT_NAME: MENU_LADM_COL_OBJECTNAME,
+            ACTIONS: [
+                {
+                    WIDGET_TYPE: MENU,
+                    WIDGET_NAME: QCoreApplication.translate("AsistenteLADMCOLPlugin", "Data management"),
+                    OBJECT_NAME: "ladm_col_data_management_menu",
+                    ICON: DATA_MANAGEMENT_ICON,
+                    ACTIONS: [
+                        ACTION_SCHEMA_IMPORT
+                    ]
+                },
+                SEPARATOR,
+                ACTION_SETTINGS,
+                SEPARATOR,
+                ACTION_HELP_ADD_ON_ENVIRONMENT,
+                ACTION_ABOUT
             ]
         }]
     }

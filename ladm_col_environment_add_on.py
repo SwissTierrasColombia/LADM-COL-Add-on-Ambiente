@@ -16,6 +16,7 @@
  ***************************************************************************/
 """
 from functools import partial
+import webbrowser
 
 from qgis.PyQt.QtCore import (QObject,
                               QCoreApplication)
@@ -28,6 +29,7 @@ from qgis.utils import plugins
 import processing
 
 try:
+    from asistente_ladm_col.config.general_config import HELP_URL
     from asistente_ladm_col.lib.context import Context
     from asistente_ladm_col.utils.decorators import (db_connection_required,
                                                      qgis_model_baker_required)
@@ -79,15 +81,22 @@ class LADMCOLEnvironmentAddOn(QObject):
         self.ladmcol.app.processing.register_add_on_processing_models(PROCESSING_MODELS_DIR)
 
     def __create_actions(self):
-        self.__run_etl_action = QAction(QIcon(ACTION_ETL_PATH),
+        self.__run_etl_action = QAction(QIcon(ACTION_ETL_ICON_PATH),
                                         QCoreApplication.translate("LADMCOLEnvironmentAddOn", "Run 2nd law ETL"),
                                         self.ladmcol.main_window)
+        self.__help_action = QAction(QIcon(ACTION_HELP_ICON_PATH),
+                                     QCoreApplication.translate("LADMCOLEnvironmentAddOn", "Help"),
+                                     self.ladmcol.main_window)
 
         # Signal-slot connections
         self.__run_etl_action.triggered.connect(partial(self.__run_etl, Context()))
+        self.__help_action.triggered.connect(self.__show_help)
 
-        self.ladmcol.gui_builder.register_actions({ACTION_ETL_ADD_ON_ENVIRONMENT: self.__run_etl_action})
-        self.ladmcol.add_actions_to_db_engines([ACTION_ETL_ADD_ON_ENVIRONMENT], ['pg', 'gpkg'])
+        self.ladmcol.gui_builder.register_actions({ACTION_ETL_ADD_ON_ENVIRONMENT: self.__run_etl_action,
+                                                   ACTION_HELP_ADD_ON_ENVIRONMENT: self.__help_action})
+        self.ladmcol.add_actions_to_db_engines([ACTION_ETL_ADD_ON_ENVIRONMENT,
+                                                ACTION_HELP_ADD_ON_ENVIRONMENT],
+                                               ['pg', 'gpkg'])
 
     @qgis_model_baker_required
     @db_connection_required
@@ -138,6 +147,9 @@ class LADMCOLEnvironmentAddOn(QObject):
             return
 
         self.ladmcol.logger.info(__name__, "ETL model finished!")
+
+    def __show_help(self):
+        webbrowser.open("{}/{}".format(HELP_URL, HELP_ENVIRONMENT_URL_PART))
 
     def __unload_ladm_col_plugin(self):
         # Called when the LADM-COL plugin is uninstalled, informing us

@@ -4,17 +4,18 @@
 <context>
     <name>AsistenteLADMCOLPlugin</name>
     <message>
-        <location filename="../config/gui_config.py" line="19"/>
+        <location filename="../config/gui_config.py" line="20"/>
+        <location filename="../config/gui_config.py" line="70"/>
         <source>Data management</source>
         <translation>Administración de Datos</translation>
     </message>
     <message>
-        <location filename="../config/gui_config.py" line="34"/>
+        <location filename="../config/gui_config.py" line="35"/>
         <source>Reports</source>
         <translation>Reportes</translation>
     </message>
     <message>
-        <location filename="../config/gui_config.py" line="50"/>
+        <location filename="../config/gui_config.py" line="51"/>
         <source>LADM-COL tools</source>
         <translation>Herramientas LADM-COL</translation>
     </message>
@@ -22,22 +23,27 @@
 <context>
     <name>LADMCOLEnvironmentAddOn</name>
     <message>
-        <location filename="../ladm_col_environment_add_on.py" line="83"/>
+        <location filename="../ladm_col_environment_add_on.py" line="85"/>
         <source>Run 2nd law ETL</source>
         <translation>Ejecutar ETL Ley 2da</translation>
     </message>
     <message>
-        <location filename="../ladm_col_environment_add_on.py" line="133"/>
+        <location filename="../ladm_col_environment_add_on.py" line="88"/>
+        <source>Help</source>
+        <translation>Ayuda</translation>
+    </message>
+    <message>
+        <location filename="../ladm_col_environment_add_on.py" line="142"/>
         <source>There was an error running the ETL model. See the QGIS log for details.</source>
         <translation>Hubo un error ejecutando el modelo ETL. Revisa el log de QGIS para más detalles.</translation>
     </message>
     <message>
-        <location filename="../ladm_col_environment_add_on.py" line="135"/>
+        <location filename="../ladm_col_environment_add_on.py" line="144"/>
         <source>Error running the ETL model. Details: {}</source>
         <translation>Error ejecutando el modelo ETL. Detalles: {}</translation>
     </message>
     <message>
-        <location filename="../config/general_config.py" line="29"/>
+        <location filename="../config/general_config.py" line="31"/>
         <source>The &apos;{}&apos; plugin requires &apos;{}&apos; version {}. Please install the required version and then reload the add-on.</source>
         <translation>El plugin &apos;{}&apos; requiere &apos;{}&apos; versión {}. Debes instalar la versión requerida y luego recargar el add-on.</translation>
     </message>
@@ -68,12 +74,12 @@
 <context>
     <name>RoleConfig</name>
     <message>
-        <location filename="../config/role_config.py" line="24"/>
+        <location filename="../config/role_config.py" line="19"/>
         <source>Environment role</source>
         <translation>Rol Ambiente</translation>
     </message>
     <message>
-        <location filename="../config/role_config.py" line="25"/>
+        <location filename="../config/role_config.py" line="20"/>
         <source>The &lt;b&gt;environment&lt;/b&gt; role is in charge of managing information of territorial objects for the environment sector.</source>
         <translation>Rol para la gestión de información de objetos territoriales del sector ambiental que se han modelado de acuerdo a LADM-COL.</translation>
     </message>

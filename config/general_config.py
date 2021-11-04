@@ -11,6 +11,8 @@ MODELS_DIR = os.path.join(RESOURCES_DIR, "models")
 PROCESSING_MODELS_DIR = os.path.join(RESOURCES_DIR, "processing", "models")
 ENVIRONMENT_ROLE_KEY = "ENVIRONMENT_ROLE"
 ACTION_ETL_ADD_ON_ENVIRONMENT = "action_etl_add_on_environment"
+ACTION_HELP_ADD_ON_ENVIRONMENT = "action_help_add_on_environment"
+HELP_ENVIRONMENT_URL_PART = "add-ons.html#add-on-de-ambiente"
 
 SECOND_LAW_MODEL_KEY = "Ley_2da"
 NATIONAL_PROTECTED_FOREST_MODEL_KEY = "Reserva_Forestal_Protectora_Nacional"
@@ -19,7 +21,8 @@ ENVIRONMENT_MODEL_KEY = "Ambiente"
 
 # Icons
 ACTION_ICON_PATH = os.path.join(IMAGES_DIR, 'reports.svg')
-ACTION_ETL_PATH = os.path.join(IMAGES_DIR, 'etl.png')
+ACTION_ETL_ICON_PATH = os.path.join(IMAGES_DIR, 'etl.png')
+ACTION_HELP_ICON_PATH = os.path.join(IMAGES_DIR, 'help.png')
 
 # LADM-COL plugin
 LADM_COL_PLUGIN_ID = "asistente_ladm_col"
