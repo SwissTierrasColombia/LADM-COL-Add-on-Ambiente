@@ -2,6 +2,8 @@
 
 Plugin de QGIS para extender el [Asistente LADM-COL](https://github.com/SwissTierrasColombia/Asistente-LADM-COL) con funcionalidades para el sector ambiente.
 
+![image](https://user-images.githubusercontent.com/652785/142505353-db6285db-8a4e-422e-afd6-1bbc8199a4d5.png)
+
 
 En su versión actual (0.2), el Add-on de Ambiente agrega al Asistente LADM-COL:
 
@@ -22,13 +24,13 @@ En su versión actual (0.2), el Add-on de Ambiente agrega al Asistente LADM-COL:
 
 ## Instalación
 
-Si usas QGIS > v3.22.0:
+Si usas QGIS >= v3.22.2:
   
   1. [Activa los complementos experimentales](https://docs.qgis.org/3.16/es/docs/user_manual/plugins/plugins.html#the-settings-tab). 
   2. Instala el `LADM-COL-Add-on-Ambiente` (versión experimental)
 
 
-Si usas QGIS <= v3.22.0:
+Si usas QGIS < v3.22.2:
 
   1. [Activa los complementos experimentales](https://docs.qgis.org/3.16/es/docs/user_manual/plugins/plugins.html#the-settings-tab). 
   2. Instala primero el `Asistente LADM-COL` 3.2.0-beta-1 (versión experimental).
