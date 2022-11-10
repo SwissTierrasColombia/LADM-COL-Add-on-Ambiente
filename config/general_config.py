@@ -27,7 +27,7 @@ ACTION_HELP_ICON_PATH = os.path.join(IMAGES_DIR, 'help.png')
 # LADM-COL plugin
 LADM_COL_PLUGIN_ID = "asistente_ladm_col"
 LADM_COL_PLUGIN_NAME = "Asistente LADM-COL"
-LADM_COL_REQUIRED_VERSION = "3.2.0-beta-1"
+LADM_COL_REQUIRED_VERSION = "4.0.2-beta-dev"
 
 WARNING_DEPENDENCY_MISSING = QCoreApplication.translate("LADMCOLEnvironmentAddOn",
                                                         "The '{}' plugin requires '{}' version {}. Please install the required version and then reload the add-on.").format(

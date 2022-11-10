@@ -31,8 +31,7 @@ import processing
 try:
     from asistente_ladm_col.config.general_config import HELP_URL
     from asistente_ladm_col.lib.context import Context
-    from asistente_ladm_col.utils.decorators import (db_connection_required,
-                                                     qgis_model_baker_required)
+    from asistente_ladm_col.utils.decorators import db_connection_required
 except ModuleNotFoundError:
     pass
 
@@ -98,7 +97,6 @@ class LADMCOLEnvironmentAddOn(QObject):
                                                 ACTION_HELP_ADD_ON_ENVIRONMENT],
                                                ['pg', 'gpkg'])
 
-    @qgis_model_baker_required
     @db_connection_required
     def __run_etl(self, *args):
         self.ladmcol.logger.info(__name__, "Running ETL model...")
